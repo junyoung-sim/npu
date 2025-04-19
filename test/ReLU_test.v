@@ -17,8 +17,8 @@ module Top();
   // DUT
   //==========================================================
 
-  logic signed [15:0] relu_dut_in;
-  logic        [15:0] relu_dut_out;
+  logic [15:0] relu_dut_in;
+  logic [15:0] relu_dut_out;
 
   ReLU #(16) relu_dut
   (
@@ -30,14 +30,14 @@ module Top();
   // Verification Tasks
   //==========================================================
 
-  function automatic logic signed [15:0] rand_q8_8();
+  function automatic logic [15:0] rand_q8_8();
     return $urandom() & ((1 << 16) - 1);
   endfunction
 
   task check
   (
-    input logic signed [15:0] relu_in,
-    input logic        [15:0] relu_out
+    input logic [15:0] relu_in,
+    input logic [15:0] relu_out
   );
 
     relu_dut_in = relu_in;
@@ -78,7 +78,7 @@ module Top();
 
     for(int i = 0; i < 10000; i++) begin
 
-      relu_in  = rand_q8_8();
+      relu_in = rand_q8_8();
       
       if(relu_in < 0)
         relu_out = 0;
