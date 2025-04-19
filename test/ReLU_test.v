@@ -17,8 +17,8 @@ module Top();
   // DUT
   //==========================================================
 
-  logic [15:0] relu_dut_in;
-  logic [15:0] relu_dut_out;
+  logic signed [15:0] relu_dut_in;
+  logic        [15:0] relu_dut_out;
 
   ReLU #(16) relu_dut
   (
@@ -36,8 +36,8 @@ module Top();
 
   task check
   (
-    input logic [15:0] relu_in,
-    input logic [15:0] relu_out
+    input logic signed [15:0] relu_in,
+    input logic        [15:0] relu_out
   );
 
     relu_dut_in = relu_in;
