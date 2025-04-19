@@ -1,7 +1,7 @@
-HW_DIR   := $(NPU_IP)/hw
-TEST_DIR := $(NPU_IP)/test
+HW_DIR   := $(NPU)/hw
+TEST_DIR := $(NPU)/test
 
-TESTS := $(wildcard $(TEST_DIR)/Proc_*_test.v)
+TESTS := $(wildcard $(TEST_DIR)/*_test.v)
 EXECS := $(patsubst %.v, %, $(TESTS))
 
 IVERILOG       := iverilog

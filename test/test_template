@@ -1,7 +1,10 @@
-`include ".v"
+`include "???.v"
 `include "TestUtils.v"
 
-module Top();
+module ???_TestSuite
+#(
+  parameter SUITE_ID
+)();
 
   // verilator lint_off UNUSED
   logic clk;
@@ -17,27 +20,59 @@ module Top();
   // DUT
   //==========================================================
 
-
   //==========================================================
   // Verification Task
   //==========================================================
-
-
 
   //==========================================================
   // Test Cases
   //==========================================================
 
-  `include "_test_cases.v"
+  task test_???();
+    t.test_case_begin( "test_???" );
+  endtask
+
+  string test_suite_name;
+
+  task run_test_suite( input int test_suite, input int n );
+    if (( test_suite <= 0 ) || ( test_suite == SUITE_ID )) begin
+      $sformat( test_suite_name, "Test Suite %0d\???(.???(%0d))", SUITE_ID, ??? );
+      t.test_suite_begin( test_suite_name );
+
+      //if ((n <= 0) || (n == 1)) test_case_1_basic();
+
+      t.test_suite_end();
+    end
+  endtask
+
+endmodule
+
+module Top();
+
+  // verilator lint_off UNUSED
+  logic clk;
+  logic rst;
+  // verilator lint_on UNUSED
+
+  TestUtils t
+  (
+    .*
+  );
 
   //==========================================================
-  // Main
+  // Test Suites
   //==========================================================
+
+  ???_TestSuite
+  #(
+    .SUITE_ID()
+  )
+  test_suite_???_???();
 
   initial begin
     t.test_bench_begin(`__FILE__);
 
-    //if((t.n <= 0) || (t.n == 1)) 
+    test_suite_???.run_test_suite();
 
     t.test_bench_end();
   end

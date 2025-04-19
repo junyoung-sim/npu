@@ -22,10 +22,14 @@ module TestUtils
   // verilator lint_off UNUSEDSIGNAL
   string vcd_filename;
   int n = 0;
-  int test_case = 0;
+  int test_case  = 0;
+  int test_suite = 0;
   // verilator lint_on UNUSEDSIGNAL
 
   initial begin
+
+    if ( !$value$plusargs( "test-suite=%d", test_suite ) )
+      test_suite = 0;
 
     if(!$value$plusargs("test-case=%d", test_case))
       test_case = 0;
@@ -77,6 +81,22 @@ module TestUtils
     if(t.n == 0)
       $write("\n");
     $finish;
+  endtask
+
+  //==========================================================
+  // test_suite_begin
+  //==========================================================
+
+  task test_suite_begin( string suite_name );
+    $write({"\n\n",suite_name});
+  endtask
+
+  //==========================================================
+  // test_suite_end
+  //==========================================================
+
+  task test_suite_end();
+    $write({"\n"});
   endtask
 
   //==========================================================
