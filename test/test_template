@@ -20,15 +20,45 @@ module ???_TestSuite
   // DUT
   //==========================================================
 
+  logic [] ???_dut_???;
+
+  ??? #() ???_dut
+  (
+
+  );
+
   //==========================================================
   // Verification Task
   //==========================================================
+
+  task check
+  (
+    input logic [] 
+  );
+
+    if(!t.failed) begin
+      
+      ???_dut_??? = 
+
+      #8;
+
+      if(t.n != 0) begin
+        $display();
+      end
+
+      `CHECK_EQ(  );
+
+      #2
+
+    end
+
+  endtask
 
   //==========================================================
   // Test Cases
   //==========================================================
 
-  task test_???();
+  task test_case_???();
     t.test_case_begin( "test_???" );
   endtask
 
@@ -39,7 +69,7 @@ module ???_TestSuite
       $sformat( test_suite_name, "Test Suite %0d\???(.???(%0d))", SUITE_ID, ??? );
       t.test_suite_begin( test_suite_name );
 
-      //if ((n <= 0) || (n == 1)) test_case_1_basic();
+      //if ((n <= 0) || (n == 1)) test_case_???();
 
       t.test_suite_end();
     end
