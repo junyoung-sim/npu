@@ -1,10 +1,7 @@
 `include "???.v"
 `include "TestUtils.v"
 
-module ???_TestSuite
-#(
-  parameter SUITE_ID
-)();
+module Top();
 
   // verilator lint_off UNUSED
   logic clk;
@@ -20,15 +17,16 @@ module ???_TestSuite
   // DUT
   //==========================================================
 
-  logic [] ???_dut_???;
+  /*
+    I/Os
+  */
 
-  ??? #() ???_dut
-  (
-
-  );
+  /*
+    DUT
+  */
 
   //==========================================================
-  // Verification Task
+  // Verification Tasks
   //==========================================================
 
   task check
@@ -37,19 +35,13 @@ module ???_TestSuite
   );
 
     if(!t.failed) begin
-      
-      ???_dut_??? = 
-
       #8;
-
       if(t.n != 0) begin
-        $display();
+        $display("%3d: ", t.cycles);
       end
-
-      `CHECK_EQ(  );
-
-      #2
-
+      //`CHECK_EQ();
+      //`CHECK_EQ_HEX();
+      #2;
     end
 
   endtask
@@ -58,55 +50,18 @@ module ???_TestSuite
   // Test Cases
   //==========================================================
 
-  task test_case_???();
-    t.test_case_begin( "test_???" );
+  task test_case_1_basic();
+    t.test_case_begin("test_case_1_basic");
   endtask
 
-  string test_suite_name;
-
-  task run_test_suite( input int test_suite, input int n );
-    if (( test_suite <= 0 ) || ( test_suite == SUITE_ID )) begin
-      $sformat( test_suite_name, "Test Suite %0d\???(.???(%0d))", SUITE_ID, ??? );
-      t.test_suite_begin( test_suite_name );
-
-      //if ((n <= 0) || (n == 1)) test_case_???();
-
-      t.test_suite_end();
-    end
-  endtask
-
-endmodule
-
-module Top();
-
-  // verilator lint_off UNUSED
-  logic clk;
-  logic rst;
-  // verilator lint_on UNUSED
-
-  TestUtils t
-  (
-    .*
-  );
-
   //==========================================================
-  // Test Suites
-  //==========================================================
-
-  ???_TestSuite
-  #(
-    .SUITE_ID()
-  )
-  test_suite_???_???();
-
-  //==========================================================
-  // main
+  // Main
   //==========================================================
 
   initial begin
     t.test_bench_begin(`__FILE__);
 
-    test_suite_???.run_test_suite();
+    if((t.n <= 0) || (t.n == 1)) test_case_1_basic();
 
     t.test_bench_end();
   end
